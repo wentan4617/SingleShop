@@ -11,6 +11,14 @@
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <!--springMVC的配置文件-->
+    <!-- 0 全局日期参数的处理 这个方式已经被废弃,但是仍然可以使用,因为本例没有使用到mvc:annotation-driven
+        所以第二种方法也不能使用.
+    -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean class="com.went.core.web.CustomDateFormat"/>
+        </property>
+    </bean>
     <!-- 1 包扫描路径的配置,只扫描Controller-->
     <context:component-scan base-package="com.went" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
